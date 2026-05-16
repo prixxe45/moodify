@@ -6,13 +6,21 @@ import { useEffect } from "react";
 export function useAuth() {
   const context = useContext(AuthContext);
 
-  const { user, setUser, loading, setLoading } = context;
+  const {
+    user,
+    setUser,
+    loading,
+    setLoading,
+    isInitialized,
+    setIsInitialized,
+  } = context;
 
   async function handleRegister({ username, email, password }) {
     setLoading(true);
     try {
       const data = await register({ username, email, password });
       setUser(data.user);
+      setIsInitialized(true);
     } catch (error) {
       console.error("Registration failed:", error);
     } finally {
@@ -23,8 +31,9 @@ export function useAuth() {
   async function handleLogin({ email, username, password }) {
     setLoading(true);
     try {
-    const data = await login({ email, username, password });
-    setUser(data.user);//data.user mai user backend se aayega
+      const data = await login({ email, username, password });
+      setUser(data.user); //data.user mai user backend se aayega
+      setIsInitialized(true);
     } catch (error) {
       console.error("Login failed:", error);
     } finally {
@@ -32,33 +41,49 @@ export function useAuth() {
     }
   }
 
+  // async function handleGetMe() {
+  //   setLoading(true);
+  //   try {
+  //     const data = await getme();
+  //     setUser(data.user);
+  //   } catch (error) {
+  //     console.error("Get me failed:", error);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // }
   async function handleGetMe() {
-    setLoading(true);
     try {
       const data = await getme();
       setUser(data.user);
     } catch (error) {
-      console.error("Get me failed:", error);
+      console.error(error);
+    } finally {
+      setIsInitialized(true);
+    }
+  }
+
+  useEffect(() => {
+    if (!isInitialized) {
+      handleGetMe();
+    }
+  }, [isInitialized]);
+
+  async function handleLogout() {
+    setLoading(true);
+    try {
+      await logout();
+      setUser(null);
+    } catch (error) {
+      console.error("Logout failed:", error);
     } finally {
       setLoading(false);
     }
   }
 
-  async function handleLogout() {
-    setLoading(true);
-    try{
-      const data = await logout();
-      setUser(null);  
-    }catch(error){
-      console.error("Logout failed:", error); 
-    }finally{
-      setLoading(false);
-    }
-  }
-
-useEffect(() => {
-handleGetMe();
-}, []);
+  // useEffect(() => {
+  // handleGetMe();
+  // }, []);
 
   return {
     handleRegister,
@@ -66,6 +91,7 @@ handleGetMe();
     handleGetMe,
     handleLogout,
     user,
-    loading
-  }
+    loading,
+    isInitialized,
+  };
 }

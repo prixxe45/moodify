@@ -1,0 +1,214 @@
+.player {
+  width: 100%;
+  max-width: 500px;
+  margin: 30px auto;
+  padding: 20px;
+  background: #181818;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  .poster-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+
+    .poster {
+      width: 200px;
+      height: 200px;
+      border-radius: 15px;
+      object-fit: cover;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    }
+  }
+
+  .song-info {
+    text-align: center;
+    margin-bottom: 10px;
+
+    h3 {
+      margin: 10px 0 5px;
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    p {
+      margin: 0;
+      font-size: 14px;
+      color: #aaa;
+    }
+  }
+
+  .player-row,
+  .progress-row,
+  .speed-row,
+  .controls-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .player-row {
+    justify-content: center;
+
+    button {
+      padding: 12px 20px;
+      border: none;
+      border-radius: 12px;
+      background: #ff4d6d;
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+
+      &:hover {
+        background: #ff1f4b;
+        transform: scale(1.05);
+      }
+
+      &:active {
+        transform: scale(0.95);
+      }
+    }
+  }
+
+  .progress-row {
+    width: 100%;
+
+    .time {
+      width: 45px;
+      font-size: 14px;
+      color: #ccc;
+    }
+
+    input[type="range"] {
+      flex: 1;
+      appearance: none;
+      height: 6px;
+      border-radius: 10px;
+      background: #444;
+      cursor: pointer;
+
+      &::-webkit-slider-thumb {
+        appearance: none;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: #ff4d6d;
+        cursor: pointer;
+      }
+
+      &::-moz-range-thumb {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: #ff4d6d;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .speed-row {
+    justify-content: center;
+
+    label {
+      font-size: 15px;
+      color: #ddd;
+    }
+
+    select {
+      padding: 8px 14px;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+      background: #2a2a2a;
+      color: white;
+      font-size: 14px;
+      cursor: pointer;
+
+      option {
+        background: #222;
+      }
+    }
+  }
+
+  .controls-row {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    .volume-control,
+    .speed-control {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .volume-control {
+      label {
+        font-size: 18px;
+      }
+
+      input[type="range"] {
+        width: 120px;
+        appearance: none;
+        height: 6px;
+        border-radius: 10px;
+        background: #444;
+        cursor: pointer;
+
+        &::-webkit-slider-thumb {
+          appearance: none;
+          width: 14px;
+          height: 14px;
+          border-radius: 50%;
+          background: #ff4d6d;
+          cursor: pointer;
+        }
+
+        &::-moz-range-thumb {
+          width: 14px;
+          height: 14px;
+          border-radius: 50%;
+          background: #ff4d6d;
+          cursor: pointer;
+          border: none;
+        }
+      }
+
+      span {
+        font-size: 13px;
+        color: #ccc;
+        min-width: 35px;
+      }
+    }
+
+    .speed-control {
+      label {
+        font-size: 14px;
+        color: #ddd;
+      }
+
+      select {
+        padding: 6px 10px;
+        border-radius: 8px;
+        border: none;
+        outline: none;
+        background: #2a2a2a;
+        color: white;
+        font-size: 13px;
+        cursor: pointer;
+
+        option {
+          background: #222;
+        }
+      }
+    }
+  }
+}

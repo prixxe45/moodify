@@ -5,9 +5,9 @@ import "../style/loding.scss"
 
 const Protected = ({children}) => {
 
-const {user, loading} = useAuth();
+const {user, loading, isInitialized} = useAuth();
 
-if (loading) {
+if (!isInitialized ) {
   return (
     <div className="music-loading">
       {/* Fog Overlay */}
@@ -26,9 +26,11 @@ if (loading) {
     </div>
   );
 }
-if(!user){
-return <Navigate to = "/login" />
+
+if (!user) {
+  return <Navigate to="/login" />;
 }
+
 
 
 
