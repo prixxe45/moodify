@@ -31,11 +31,7 @@ const token = jwt.sign({
 }
 )
 
-res.cookie('token', token{
-  httpOnly: true,
-    secure: time,
-    sameStie: "None"
-})
+res.cookie('token', token)
 
 return res.status(201).json({ message: 'User registered successfully',
   user:{
@@ -71,7 +67,11 @@ async function loginUser(req, res) {
     expiresIn: '3d'
   })
 
-  res.cookie('token', token)
+  res.cookie('token', token,{
+  httpOnly: true,
+    secure: time,
+    sameStie: "None"
+})
 
   return res.status(200).json({message: 'Login successful', 
     user: {
@@ -99,7 +99,13 @@ if(!token){
   return res.status(400).json({message: 'Token not found'});
 
 }
-res.clearCookie("token");
+res.clearCookie("token",{
+  httpOnly: true,
+    secure: time,
+    sameStie: "None"
+}
+  
+});
 
 redis.set(token, Date.now().toString(), 'EX', 24*60*60);
 
