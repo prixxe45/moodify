@@ -31,7 +31,11 @@ const token = jwt.sign({
 }
 )
 
-res.cookie('token', token)
+res.cookie('token', token{
+  httpOnly: true,
+    secure: time,
+    sameStie: "None"
+})
 
 return res.status(201).json({ message: 'User registered successfully',
   user:{
