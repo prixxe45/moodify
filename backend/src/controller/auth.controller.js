@@ -103,8 +103,6 @@ res.clearCookie("token",{
   httpOnly: true,
     secure: true,
     sameStie: "None"
-})
-  
 });
 
 redis.set(token, Date.now().toString(), 'EX', 24*60*60);
