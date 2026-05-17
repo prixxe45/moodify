@@ -70,7 +70,7 @@ async function loginUser(req, res) {
   res.cookie('token', token,{
   httpOnly: true,
     secure: true,
-    sameStie: "None"
+    sameSite: "None"
 })
 
   return res.status(200).json({message: 'Login successful', 
@@ -102,7 +102,7 @@ if(!token){
 res.clearCookie("token",{
   httpOnly: true,
     secure: true,
-    sameStie: "None"
+    sameSite: "None"
 });
 
 redis.set(token, Date.now().toString(), 'EX', 24*60*60);
