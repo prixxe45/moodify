@@ -5,7 +5,7 @@ const cors = require('cors');
 
 // Middleware
 app.use(cors({
-    origin: 'http://localhost:5173', // Update with your frontend URL
+    origin: 'https://moodify-frontend-sfpv.onrender.com', // Update with your frontend URL
     credentials: true, // Allow cookies to be sent
 }));
 app.use(express.json());
