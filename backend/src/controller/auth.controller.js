@@ -69,7 +69,7 @@ async function loginUser(req, res) {
 
   res.cookie('token', token,{
   httpOnly: true,
-    secure: time,
+    secure: true,
     sameStie: "None"
 })
 
@@ -101,7 +101,7 @@ if(!token){
 }
 res.clearCookie("token",{
   httpOnly: true,
-    secure: time,
+    secure: true,
     sameStie: "None"
 }
   
