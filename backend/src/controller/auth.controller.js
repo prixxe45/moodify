@@ -103,7 +103,7 @@ res.clearCookie("token",{
   httpOnly: true,
     secure: true,
     sameStie: "None"
-}
+})
   
 });
 
