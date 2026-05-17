@@ -2,7 +2,7 @@ import axios from 'axios';
 
 
 const api = axios.create({
-  baseURL: 'http://localhost:3000/api',
+  baseURL: 'https://moodify-9pce.onrender.com/api',
 })
 
 export async function getSong({songFile, mood}) {
